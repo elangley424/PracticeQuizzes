@@ -1,0 +1,137 @@
+import java.util.*;
+
+public class qset1 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Map<String, String> flashcards = new LinkedHashMap<>();
+
+        // Flashcard questions and correct answers
+        flashcards.put("What is a project?", "A temporary endeavor undertaken to create a unique product, service, or result.");
+        flashcards.put("What is project management?", "The application of knowledge, skills, tools, and techniques to project activities to meet project requirements.");
+        flashcards.put("What are the triple constraints?", "Scope, time, and cost.");
+        flashcards.put("What is a scope statement?", "A document that defines the project boundaries, deliverables, constraints, and assumptions.");
+        flashcards.put("Why is the Outcome Model useful?", "It helps define success by focusing on the desired future state instead of just solving problems.");
+        flashcards.put("What are the two major emotions behind leadership?", "Fear and love.");
+        flashcards.put("What does MoSCoW stand for in requirements gathering?", "Must have, Should have, Could have, and Won't have.");
+        flashcards.put("What is risk management?", "The process of identifying, assessing, and controlling threats to a project's success.");
+        flashcards.put("What is a Work Breakdown Structure (WBS)?", "A hierarchical decomposition of the total scope of work to accomplish project objectives.");
+        flashcards.put("What is a critical path?", "The longest sequence of dependent tasks that determines the minimum project duration.");
+        flashcards.put("What is Earned Value?", "A measure of work performed expressed in terms of the budget authorized for that work.");
+        flashcards.put("What is a configuration management plan?", "A plan to manage changes and ensure the integrity of product performance, function, and design.");
+        flashcards.put("What is project portfolio management?", "The centralized management of processes, methods, and technologies used by project managers to analyze and manage current or proposed projects.");
+// 2nd Round
+        flashcards.put("What defines a project?", "A temporary endeavor undertaken to create a unique product, service, or result.");
+        flashcards.put("Is launching a new product a project or operations?", "A project – it has a defined beginning and end, unique deliverables, and specific objectives.");
+        flashcards.put("What are the five phases of the project lifecycle?", "Initiating, Planning, Executing, Monitoring & Controlling, Closing.");
+        flashcards.put("What are the three components of the Triple Constraints (Iron Triangle)?", "Scope, Time, and Cost.");
+        flashcards.put("Why is the Iron Triangle important?", "All projects must balance scope, time, and cost. A change to one affects the others.");
+        flashcards.put("What is a good scope statement?", "A document including project objectives, deliverables, acceptance criteria, exclusions, and constraints.");
+        flashcards.put("How is the Outcome Model different from the problem-solving model?", "It focuses on reaching a desired future state rather than just fixing current problems.");
+        flashcards.put("What are the two emotions Dr. H. says underlie all leadership actions?", "Fear and Love.");
+        flashcards.put("What is followership?", "The willingness and ability to actively support leaders and organizational goals.");
+        flashcards.put("What are the four common risk responses?", "Avoid, Transfer, Mitigate, Accept.");
+        flashcards.put("What is a work package in a WBS?", "The lowest level task that can be assigned, estimated, and managed.");
+        flashcards.put("What is a summary task in a WBS?", "A high-level task that groups multiple work packages or sub-tasks.");
+        flashcards.put("What is a critical path?", "The longest sequence of dependent tasks that determines the shortest time to complete a project.");
+        flashcards.put("How do you calculate Earned Value (EV)?", "EV = % Complete × Budget at Completion (BAC).");
+        flashcards.put("What is Lewin’s Change Model?", "Unfreeze → Change → Refreeze.");
+        flashcards.put("What is the difference between a handoff and a handover?", "A handoff is transferring the product; a handover includes the transfer of responsibility and knowledge.");
+        flashcards.put("How should a PM handle a customer delaying a project?", "Set clear expectations, communicate consistently, and document delays and impacts.");
+        flashcards.put("What is Project Portfolio Management?", "The centralized management of processes, methods, and technologies used by project managers to analyze and manage current or proposed projects.");
+        flashcards.put("What is a PMO?", "Project Management Office – a centralized group that standardizes project-related governance processes and facilitates sharing of resources and best practices.");
+        flashcards.put("What are the benefits of Portfolio Management?", "Aligns projects with strategy, optimizes resources, manages risk, and improves project selection.");
+        flashcards.put("What is a configuration management plan?", "A plan that defines how project deliverables and documentation are controlled, changed, and audited.");
+        flashcards.put("What are the three suggested principles for planning project closure?", "Plan early, document thoroughly, and engage stakeholders.");
+        flashcards.put("What are some issues that can hinder closing a project?", "Unresolved deliverables, unclear requirements, lack of stakeholder engagement, and incomplete documentation.");
+        flashcards.put("What are requirements in a project?", "Statements of what the project must deliver to satisfy customer needs.");
+        flashcards.put("What is MoSCoW prioritization?", "A method for prioritizing requirements: Must have, Should have, Could have, and Won’t have.");
+        flashcards.put("Why is the Outcome Model useful for requirements gathering?", "It helps define desired outcomes and avoids just solving surface-level problems.");
+        flashcards.put("What is phased estimating?", "Estimating project costs in stages as more information becomes available.");
+        flashcards.put("What is parametric estimating?", "Using statistical models and historical data to estimate project costs or durations.");
+        flashcards.put("What are CAPEX and OPEX?", "CAPEX: Capital Expenditures for long-term assets. OPEX: Operational Expenditures for daily running costs.");
+        flashcards.put("What is responsibility beyond your authority?", "Taking initiative to solve problems or drive outcomes even when not formally assigned the responsibility.");
+        flashcards.put("What is disaster recovery in project management?", "A plan to bring the project back on track when it has significantly deviated from the plan.");
+        flashcards.put("What is the difference between effort, elapsed, and partition times?", "Effort: total work time; Elapsed: calendar time; Partition: effort divided among resources.");
+        flashcards.put("What is a non-partitionable task?", "A task that cannot be split among multiple resources – only one person can complete it at a time.");
+        flashcards.put("How do likelihood, impact, and timing relate to risk?", "They help assess how serious a risk is and how urgently it needs to be addressed.");
+        flashcards.put("What does 'Managing Professionals Like Volunteers' mean?", "Motivating team members through purpose and engagement rather than authority alone.");
+
+        List<String> questions = new ArrayList<>(flashcards.keySet());
+        List<String> answers = new ArrayList<>(flashcards.values());
+        Collections.shuffle(questions);
+
+        int score = 0;
+        int total = questions.size();
+
+        System.out.println("Welcome to the MIST 5740S Multiple Choice Quiz!");
+        System.out.println("Type A, B, C, or D to answer. Type 'exit' to quit.\n");
+
+        int questionNum = 1;
+
+        for (String question : questions) {
+            String correctAnswer = flashcards.get(question);
+            Set<String> options = new HashSet<>();
+            options.add(correctAnswer);
+
+            Random rand = new Random();
+            while (options.size() < 4) {
+                String wrongAnswer = answers.get(rand.nextInt(answers.size()));
+                if (!wrongAnswer.equals(correctAnswer)) {
+                    options.add(wrongAnswer);
+                }
+            }
+
+            List<String> optionList = new ArrayList<>(options);
+            Collections.shuffle(optionList);
+
+            Map<String, String> letterToAnswer = new LinkedHashMap<>();
+            char letter = 'A';
+            for (String opt : optionList) {
+                letterToAnswer.put(String.valueOf(letter), opt);
+                letter++;
+            }
+
+            boolean validInput = false;
+            while (!validInput) {
+                System.out.println("Q" + questionNum + ": " + question);
+                for (Map.Entry<String, String> entry : letterToAnswer.entrySet()) {
+                    System.out.println(entry.getKey() + ") " + entry.getValue());
+                }
+
+                System.out.print("Your answer: ");
+                String userChoice = scanner.nextLine().trim().toUpperCase();
+
+                if (userChoice.equals("EXIT")) {
+                    System.out.println("\nExiting the quiz early.");
+                    System.out.println("You got " + score + " out of " + (questionNum - 1) + " correct.");
+                    scanner.close();
+                    return;
+                }
+
+                if (!letterToAnswer.containsKey(userChoice)) {
+                    System.out.println("Invalid option. Please choose A, B, C, or D.\n");
+                    continue; // retry the same question
+                }
+
+                validInput = true;
+                String selectedAnswer = letterToAnswer.get(userChoice);
+
+                if (selectedAnswer.equals(correctAnswer)) {
+                    System.out.println("Correct!\n");
+                    score++;
+                } else {
+                    System.out.println("No. The correct answer is:\n" + correctAnswer + "\n");
+                }
+            }
+
+            questionNum++;
+        }
+
+        System.out.println("Quiz complete!");
+        System.out.println("Your score: " + score + " out of " + total);
+        System.out.println("Percentage: " + (int) ((score * 100.0) / total) + "%");
+
+        scanner.close();
+    }
+}
